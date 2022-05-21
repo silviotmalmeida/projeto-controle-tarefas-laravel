@@ -33,7 +33,11 @@ Principais comandos do laravel:
 
 - Para criar um projeto laravel utiliza-se o comando: composer create-project --prefer-dist laravel/laravel nome-do-projeto "versão do laravel"
 
-- Para adicionar o laravel ui utiliza-se o comando: composer require larave/ui:"versão"
+- Para adicionar o laravel ui utiliza-se o comando: composer require laravel/ui:"versão"
+
+- Para atualizar o frontend da seção de autentucação web criada pelo ui utiliza-se o comando: npm install && npm run dev
+
+- Para utilizar o laravel ui com autenticação web habilitada utiliza-se o comando: php artisan ui "bootstrap ou vue ou react" --auth
 
 - Para criar um controller utiliza-se o comando, na pasta raiz do projeto: php artisan make:controller nome-do-controller-Controller
 
