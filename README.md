@@ -2,11 +2,11 @@
 
 ## Projeto construído durante o curso "Desenvolvimento Web Avançado 2022 com PHP, Laravel e Vue.JS" do professor Jorge Sant Ana.
 
-Trata-se da implementação de um sistema de controle de tarefas.
+Trata-se da implementação de um sistema de controle de tarefas para exemplificar a utilização do recurso de autenticação web do Laravel.
 
 O projeto encontra-se dockerizado para facilitar a implantação. As orientações para execução estão listadas abaixo:
 
-- Criar e carregar a imagem docker super-gestao-laravel conforme passos da pasta image;
+- Criar e carregar a imagem docker controle-tarefas-laravel conforme passos da pasta image;
 
 - Para iniciar o container utiliza-se o comando "sudo ./startContainers.sh";
 
@@ -14,15 +14,9 @@ O projeto encontra-se dockerizado para facilitar a implantação. As orientaçõ
 
 - Para aplicar as migrations utiliza-se o comando "sudo ./runMigrate.sh";
 
-- Para criar uma massa de dados de teste utiliza-se o comando "sudo ./runSeed.sh";
-
 - Para iniciar o servidor utiliza-se o comando "sudo ./runServer.sh";
 
 - O sistema estará disponível na URL "0.0.0.0:8080";
-
-- O dados para acesso da Área Restrita são:
-    - Email: root@email.com
-    - Senha: 123456
 
 - Para encerrar a execução utiliza-se o comando "sudo ./stopContainers.sh";
 

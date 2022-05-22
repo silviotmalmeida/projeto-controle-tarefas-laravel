@@ -13,6 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        // é este middleware que realiza o controle de acesso à rota home
         $this->middleware('auth');
     }
 

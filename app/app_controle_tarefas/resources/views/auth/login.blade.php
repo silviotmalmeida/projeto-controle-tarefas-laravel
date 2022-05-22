@@ -12,7 +12,8 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            {{-- traduzindo a label para o português --}}
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Endereço de Email') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -26,7 +27,8 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            {{-- traduzindo a label para o português --}}
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Senha') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -44,8 +46,9 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
+                                    {{-- traduzindo a label para o português --}}
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Manter conectado') }}
                                     </label>
                                 </div>
                             </div>
@@ -53,13 +56,15 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
+                                {{-- traduzindo o botão para o português --}}
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                                    {{ __('Entrar') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
+                                    {{-- traduzindo o link para o português --}}
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
+                                        {{ __('Esqueceu a senha?') }}
                                     </a>
                                 @endif
                             </div>
