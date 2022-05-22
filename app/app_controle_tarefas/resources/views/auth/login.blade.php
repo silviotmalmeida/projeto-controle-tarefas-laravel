@@ -5,14 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                {{-- traduzindo para o português --}}
+                <div class="card-header">{{ __('Entrar') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="row mb-3">
-                            {{-- traduzindo a label para o português --}}
+                            {{-- traduzindo para o português --}}
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Endereço de Email') }}</label>
 
                             <div class="col-md-6">
@@ -27,7 +28,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            {{-- traduzindo a label para o português --}}
+                            {{-- traduzindo para o português --}}
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Senha') }}</label>
 
                             <div class="col-md-6">
@@ -46,7 +47,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    {{-- traduzindo a label para o português --}}
+                                    {{-- traduzindo para o português --}}
                                     <label class="form-check-label" for="remember">
                                         {{ __('Manter conectado') }}
                                     </label>
@@ -56,13 +57,13 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                {{-- traduzindo o botão para o português --}}
+                                {{-- traduzindo para o português --}}
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Entrar') }}
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    {{-- traduzindo o link para o português --}}
+                                    {{-- traduzindo para o português --}}
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Esqueceu a senha?') }}
                                     </a>

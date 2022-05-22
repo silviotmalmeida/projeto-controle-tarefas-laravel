@@ -13,10 +13,11 @@ return [
     |
     */
 
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have emailed your password reset link!',
-    'throttled' => 'Please wait before retrying.',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that email address.",
+    // traduzindo para o português
+    'reset' => 'Sua senha foi recadastrada!',
+    'sent' => 'Te enviamos um email para recadastrar sua senha! Favor verificar seu email.',
+    'throttled' => 'Aguarde alguns minutos antes de tentar novamente.',
+    'token' => 'Este código de recadastramento de senha é inválido.',
+    'user' => "Infelizmente não encontramos nenhum usuário cadastrado com este email.",
 
 ];

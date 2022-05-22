@@ -27,10 +27,12 @@
                     @auth
                         <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                        {{-- traduzindo para o português --}}
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Entrar</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                            {{-- traduzindo para o português --}}
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Registrar</a>
                         @endif
                     @endauth
                 </div>

@@ -19,6 +19,7 @@ services:
     #porta a ser exposta
     ports:
       - 8080:8080
+      - 8025:8025
   
     #artifício para manter o container aberto
     tty: true

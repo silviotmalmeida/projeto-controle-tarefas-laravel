@@ -18,6 +18,10 @@ O projeto encontra-se dockerizado para facilitar a implantação. As orientaçõ
 
 - O sistema estará disponível na URL "0.0.0.0:8080";
 
+- Para iniciar o mailhog(servidor smtp), em outro terminal, utiliza-se o comando "sudo ./runMailhog.sh";
+
+- O Mailhog estará disponível na URL "0.0.0.0:8025";
+
 - Para encerrar a execução utiliza-se o comando "sudo ./stopContainers.sh";
 
 Foram incluídos diversos comentários para facilitar o entendimento do código.
