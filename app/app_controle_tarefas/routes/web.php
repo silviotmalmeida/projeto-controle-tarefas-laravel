@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+// importando o controlador do email
+use App\Mail\TestMessageMail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +26,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // definindo as rotas de task
 Route::resource('task', 'App\Http\Controllers\TaskController');
+
+
+
+
+Route::get('/test_message', function(){
+
+    return new TestMessageMail();
+});

@@ -49,6 +49,10 @@ Principais comandos do laravel:
 
 - Para criar uma factory de objetos utiliza-se o comando, na pasta raiz do projeto: php artisan make:factory nome-da-model-Factory --model=nome-da-model 
 
+- Para criar um template de email utiliza-se o comando, na pasta raiz do projeto: php artisan make:mail nome-do-controlador-Mail --markdown nome-da-view
+
+- Para criar uma cópia dos estilos gerais de email do laravel para o seu projeto local, visando customização, utiliza-se o comando, na pasta raiz do projeto: php artisan vendor:publish, em seguida selecionar a opção 14
+
 - Para aplicar as migrations utiliza-se o comando, na pasta raiz do projeto: php artisan migrate
 
 - Para reverter as migrations utiliza-se o comando, na pasta raiz do projeto: php artisan migrate:rollback --step=número-de-passos-a-serem-revertidos
