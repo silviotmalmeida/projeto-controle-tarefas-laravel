@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 {{-- traduzindo para o português --}}
-                <div class="card-header">{{ __('Recadastrar Senha') }}</div>
+                <div class="card-header">{{ __('Alterar Senha') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -37,7 +37,7 @@
                             <div class="col-md-6 offset-md-4">
                                 {{-- traduzindo para o português --}}
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Enviar email para recadastrar senha') }}
+                                    {{ __('Enviar email para alterar senha') }}
                                 </button>
                             </div>
                         </div>

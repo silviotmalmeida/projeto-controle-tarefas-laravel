@@ -20,17 +20,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// rotas de autenticação, com exigencia de verificação do email cadastrado
+Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// definindo a rota do home, acessível somente a usuários cadastrados e com email verificado
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('home')
+    ->middleware('verified');
 
-// definindo as rotas de task
-Route::resource('task', 'App\Http\Controllers\TaskController');
+// definindo as rotas de task, acessíveis somente a usuários cadastrados e com email verificado
+Route::resource('task', 'App\Http\Controllers\TaskController')
+    ->middleware('verified');
 
 
 
 
-Route::get('/test_message', function(){
+Route::get('/test_message', function () {
 
     return new TestMessageMail();
 });

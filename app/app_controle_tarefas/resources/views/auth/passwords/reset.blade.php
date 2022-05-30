@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 {{-- traduzindo para o português --}}
-                <div class="card-header">{{ __('Recadastrar Senha') }}</div>
+                <div class="card-header">{{ __('Alterar Senha') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
@@ -58,7 +58,7 @@
                             <div class="col-md-6 offset-md-4">
                                 {{-- traduzindo para o português --}}
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Recadastrar Senha') }}
+                                    {{ __('Alterar Senha') }}
                                 </button>
                             </div>
                         </div>

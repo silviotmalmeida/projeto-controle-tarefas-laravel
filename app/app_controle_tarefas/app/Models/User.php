@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+// importando a notificação
+use App\Notifications\ResetPasswordNotification;
+
+// alterado para implementar MustVerifyEmail para exigir verificação do email cadastrado
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -40,4 +44,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // sobrescrevendo a função padrão de envio de e-mail de reset de senha
+    public function sendPasswordResetNotification($token)
+    {
+
+        // utilizando a notificação
+        $this->notify(new ResetPasswordNotification($token, $this->email, $this->name));
+    }
 }

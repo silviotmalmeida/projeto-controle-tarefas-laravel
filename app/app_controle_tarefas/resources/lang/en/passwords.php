@@ -14,8 +14,8 @@ return [
     */
 
     // traduzindo para o português
-    'reset' => 'Sua senha foi recadastrada!',
-    'sent' => 'Te enviamos um email para recadastrar sua senha! Favor verificar seu email.',
+    'reset' => 'Sua senha foi alterada!',
+    'sent' => 'Te enviamos um email para alterar sua senha! Favor verificar seu email.',
     'throttled' => 'Aguarde alguns minutos antes de tentar novamente.',
     'token' => 'Este código de recadastramento de senha é inválido.',
     'user' => "Infelizmente não encontramos nenhum usuário cadastrado com este email.",
