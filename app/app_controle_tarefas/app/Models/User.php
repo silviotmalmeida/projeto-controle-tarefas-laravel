@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-// importando a notificação
+// importando as notificações
 use App\Notifications\ResetPasswordNotification;
+use App\Notifications\VerifyEmailNotification;
 
 // alterado para implementar MustVerifyEmail para exigir verificação do email cadastrado
 class User extends Authenticatable implements MustVerifyEmail
@@ -52,5 +53,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
         // utilizando a notificação
         $this->notify(new ResetPasswordNotification($token, $this->email, $this->name));
+    }
+
+    // sobrescrevendo a função padrão de envio de e-mail de verificação de e-mail
+    public function sendEmailVerificationNotification()
+    {
+
+        // utilizando a notificação
+        $this->notify(new VerifyEmailNotification($token, $this->email, $this->name));
     }
 }
