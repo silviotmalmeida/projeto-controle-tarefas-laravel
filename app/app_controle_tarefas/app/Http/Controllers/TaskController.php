@@ -29,7 +29,7 @@ class TaskController extends Controller
     {
 
         // exemplo de lógica para verificação do usuário
-        if(auth()->check()){
+        if (auth()->check()) {
 
             // exemplo de como obter os dados do usuário logado
             $id = auth()->user()->id;
@@ -37,12 +37,10 @@ class TaskController extends Controller
             $email = auth()->user()->email;
 
             return "Usuário logado: Id= $id | Nome=$name | Email=$email. Entramos na página de tarefas!";
-        }
-        else{
+        } else {
 
             return 'Usuário não logado. Acesso não permitido!';
         }
-
     }
 
     /**
@@ -52,7 +50,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+
+        // renderiza a view create
+        return view('task.create');
     }
 
     /**

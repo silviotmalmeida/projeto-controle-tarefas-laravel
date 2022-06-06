@@ -5,7 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                {{-- traduzindo para o português --}}
+                <div class="card-header">{{ __('Painel de avisos') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,6 +15,7 @@
                         </div>
                     @endif
 
+                    {{-- traduzindo para o português --}}
                     {{ __('Você entrou no sistema!') }}
                 </div>
             </div>

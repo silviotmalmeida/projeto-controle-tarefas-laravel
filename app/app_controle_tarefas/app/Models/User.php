@@ -60,6 +60,6 @@ class User extends Authenticatable implements MustVerifyEmail
     {
 
         // utilizando a notificação
-        $this->notify(new VerifyEmailNotification($token, $this->email, $this->name));
+        $this->notify(new VerifyEmailNotification($this->name));
     }
 }

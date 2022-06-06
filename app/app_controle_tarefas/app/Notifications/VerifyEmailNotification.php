@@ -11,6 +11,22 @@ use Illuminate\Support\Facades\URL;
 
 class VerifyEmailNotification extends Notification
 {
+
+    // criando o atributo para o name
+    public $name;
+
+    /**
+     * Create a new notification instance.
+     *
+     * @return void
+     */
+    // alterando o construtor para recebimento do token da model User
+    public function __construct($name)
+    {
+        //atribuindo o name
+        $this->name = $name;
+    }
+
     /**
      * The callback that should be used to create the verify email URL.
      *
@@ -61,11 +77,14 @@ class VerifyEmailNotification extends Notification
      */
     protected function buildMailMessage($url)
     {
+        // customizando os campos do email
         return (new MailMessage)
-            ->subject(Lang::get('Verify Email Address'))
-            ->line(Lang::get('Please click the button below to verify your email address.'))
-            ->action(Lang::get('Verify Email Address'), $url)
-            ->line(Lang::get('If you did not create an account, no further action is required.'));
+            ->subject(Lang::get(env('APP_NAME') . ' - Verificação de e-mail'))
+            ->greeting('Olá ' . $this->name . '!')
+            ->line(Lang::get('Por favor clique no botão abaixo para verificar seu endereço de e-mail.'))
+            ->action(Lang::get('Clique aqui para verificar seu e-mail'), $url)
+            ->line(Lang::get('Se você não criou uma conta de acesso no sistema ' . env('APP_NAME') . ', favor desconsiderar este e-mail.'))
+            ->salutation('Até breve!');
     }
 
     /**
