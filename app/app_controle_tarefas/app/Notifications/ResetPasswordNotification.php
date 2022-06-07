@@ -67,12 +67,23 @@ class ResetPasswordNotification extends Notification
 
         // customizando os campos do email
         return (new MailMessage)
+            // customizando o assunto do e-mail
             ->subject(env('APP_NAME') . ' - Alteração de Senha')
+
+            // customizando a saudação
             ->greeting('Olá ' . $this->name . "!")
+
+            // customizando as linhas do e-mail
             ->line('Você solicitou a alteração de senha do ' . env('APP_NAME'))
+            
+            // customizando o botão
             ->action('Clique aqui para alterar a senha', $url)
+
+            // customizando as linhas do e-mail
             ->line('Este link vai expirar em ' . $minutes . ' minutos.')
             ->line('Caso você não tenha solicitado alteração de senha, nenhuma ação é necessária.')
+            
+            // customizando a despedida
             ->salutation('Até breve!');
     }
 

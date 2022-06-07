@@ -27,7 +27,7 @@ class CreateTasksTable extends Migration
             //// criação da coluna
             $table->integer('user_id');
             //// adição da restrição de integridade referencial
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
 
             // coluna para permitir o soft delete
             $table->softDeletes();

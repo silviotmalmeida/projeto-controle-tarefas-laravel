@@ -79,11 +79,22 @@ class VerifyEmailNotification extends Notification
     {
         // customizando os campos do email
         return (new MailMessage)
+            // customizando o assunto do e-mail
             ->subject(Lang::get(env('APP_NAME') . ' - Verificação de e-mail'))
+
+            // customizando a saudação
             ->greeting('Olá ' . $this->name . '!')
+
+            // customizando as linhas do e-mail
             ->line(Lang::get('Por favor clique no botão abaixo para verificar seu endereço de e-mail.'))
+
+            // customizando o botão
             ->action(Lang::get('Clique aqui para verificar seu e-mail'), $url)
+
+            // customizando as linhas do e-mail
             ->line(Lang::get('Se você não criou uma conta de acesso no sistema ' . env('APP_NAME') . ', favor desconsiderar este e-mail.'))
+
+            // customizando a despedida
             ->salutation('Até breve!');
     }
 

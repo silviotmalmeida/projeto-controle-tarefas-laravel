@@ -2,11 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
 use Illuminate\Http\Request;
+
+// importando a model
+use App\Models\Task;
+
+// importando a classe de envio de email
+use Illuminate\Support\Facades\Mail;
+
+// importando a classe de template de e-mail
+use App\Mail\NewTaskMail;
 
 class TaskController extends Controller
 {
+
+    // definição das validações de cada campo
+    private $validationRules =
+    [
+        'task' => 'required|min:5|max:200',
+        'end_date_limit' => 'required|date'
+    ];
+
+    // customização das mensagens de erro
+    private $validationMessages =
+    [
+        'required' => 'O campo não pode ser vazio!',
+        'task.min' => 'O campo não pode ter menos de 5 caracteres!',
+        'task.max' => 'O campo não pode ter mais de 200 caracteres!',
+        'date' => 'O campo deve ser uma data!'
+    ];
 
     // foi adicionado o construct para permitir utilização do middleware auth
     /**
@@ -25,22 +49,14 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // consulta no BD
+        $tasks = Task::all();
 
-        // exemplo de lógica para verificação do usuário
-        if (auth()->check()) {
-
-            // exemplo de como obter os dados do usuário logado
-            $id = auth()->user()->id;
-            $name = auth()->user()->name;
-            $email = auth()->user()->email;
-
-            return "Usuário logado: Id= $id | Nome=$name | Email=$email. Entramos na página de tarefas!";
-        } else {
-
-            return 'Usuário não logado. Acesso não permitido!';
-        }
+        // renderiza a view index, passando os resultados da consulta e os parâmetros do request
+        // o envio dos parâmetros do request possibilita a persistência dos filtros utilizados na paginação
+        return view('task.index', ['tasks' => $tasks, 'request' => $request->all()]);
     }
 
     /**
@@ -63,18 +79,51 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // validando os dados recebidos do formulário
+        $request->validate($this->validationRules, $this->validationMessages);
+
+        // obtendo os dados do usuário logado
+        $user = auth()->user();
+
+        // insere os dados no BD
+        $task = new Task();
+        $task->user_id = $user->id;
+        $task->task = $request->get('task');
+        $task->end_date_limit = $request->get('end_date_limit');
+        $task->save();
+
+        // envia e-mail para ciência do usuário
+        Mail::to($user->email)->send(new NewTaskMail($task));
+
+        // redireciona para a rota show
+        return redirect()->route('task.show', ['task' => $task->id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Task  $task
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show($id)
     {
-        //
+
+        // consulta no BD, utilizando o id
+        $task = Task::find($id);
+
+        // se não houver correspondência no BD
+        if (!$task->id) {
+
+            // renderiza a view index
+            return redirect()->route('task.index');
+        }
+        // senão
+        else {
+
+            // renderiza a view show, passando os resultados da consulta
+            return view('task.show', ['task' => $task]);
+        }
     }
 
     /**
