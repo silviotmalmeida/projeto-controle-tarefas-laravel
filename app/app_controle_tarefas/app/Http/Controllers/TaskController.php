@@ -51,8 +51,12 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        // consulta no BD
-        $tasks = Task::all();
+
+        // obtendo o id do usuário logado
+        $user_id = auth()->user()->id;
+        
+        // consulta no BD, ordenando por data limite 
+        $tasks = Task::where('user_id', $user_id)->orderBy('end_date_limit', 'desc')->paginate(6);
 
         // renderiza a view index, passando os resultados da consulta e os parâmetros do request
         // o envio dos parâmetros do request possibilita a persistência dos filtros utilizados na paginação
@@ -66,7 +70,6 @@ class TaskController extends Controller
      */
     public function create()
     {
-
         // renderiza a view create
         return view('task.create');
     }

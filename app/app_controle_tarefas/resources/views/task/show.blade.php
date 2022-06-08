@@ -1,5 +1,7 @@
+{{-- extende do arquivo base de layout --}}
 @extends('layouts.app')
 
+{{-- definindo o conteúdo a ser injetado --}}
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
