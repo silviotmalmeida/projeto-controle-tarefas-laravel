@@ -51,10 +51,9 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-
         // obtendo o id do usuário logado
         $user_id = auth()->user()->id;
-        
+
         // consulta no BD, ordenando por data limite 
         $tasks = Task::where('user_id', $user_id)->orderBy('end_date_limit', 'desc')->paginate(6);
 
@@ -82,7 +81,6 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-
         // validando os dados recebidos do formulário
         $request->validate($this->validationRules, $this->validationMessages);
 
@@ -106,27 +104,20 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Task $task)
     {
+        // se a tarefa não pertencer ao usuário logado
+        if (!($task->user_id == auth()->user()->id)) {
 
-        // consulta no BD, utilizando o id
-        $task = Task::find($id);
-
-        // se não houver correspondência no BD
-        if (!$task->id) {
-
-            // renderiza a view index
-            return redirect()->route('task.index');
+            // renderiza a view forbidden, impedindo a operação
+            return view('forbidden');
         }
-        // senão
-        else {
 
-            // renderiza a view show, passando os resultados da consulta
-            return view('task.show', ['task' => $task]);
-        }
+        // renderiza a view show, passando os resultados da consulta
+        return view('task.show', ['task' => $task]);
     }
 
     /**
@@ -137,7 +128,15 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        // se a tarefa não pertencer ao usuário logado
+        if (!($task->user_id == auth()->user()->id)) {
+
+            // renderiza a view forbidden, impedindo a operação
+            return view('forbidden');
+        }
+
+        // renderiza a view create, passando os resultados da consulta
+        return view('task.create', ['task' => $task]);
     }
 
     /**
@@ -149,7 +148,21 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        // se a tarefa não pertencer ao usuário logado
+        if (!($task->user_id == auth()->user()->id)) {
+
+            // renderiza a view forbidden, impedindo a operação
+            return view('forbidden');
+        }
+
+        // validando os dados recebidos do formulário
+        $request->validate($this->validationRules, $this->validationMessages);
+
+        // atualiza os dados no BD
+        $task->update($request->all());
+
+        // redireciona para a rota show
+        return redirect()->route('task.show', ['task' => $task->id]);
     }
 
     /**
@@ -160,6 +173,17 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        // se a tarefa não pertencer ao usuário logado
+        if (!($task->user_id == auth()->user()->id)) {
+
+            // renderiza a view forbidden, impedindo a operação
+            return view('forbidden');
+        }
+
+        // apagando o registro no BD
+        $task->delete();
+
+        // redireciona para a rota index
+        return redirect()->route('task.index');
     }
 }

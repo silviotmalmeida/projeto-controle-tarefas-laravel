@@ -27,7 +27,7 @@ class TaskSeeder extends Seeder
             $user_id = rand(1, $user_range);
 
             // sorteando um timestamp
-            $timestamp = date("Y-m-d H:i:s", mt_rand(1, time()));
+            $timestamp = date("Y-m-d", mt_rand(1, time()));
 
             // criando o objeto e salvando no BD
             Task::create([

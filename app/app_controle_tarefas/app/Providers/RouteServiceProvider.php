@@ -17,7 +17,9 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    // alterado para a página inicial da aplicação
+    // dessa forma após o login seremo redirecionado a esta página
+    public const HOME = '/task';
 
     /**
      * The controller namespace for the application.

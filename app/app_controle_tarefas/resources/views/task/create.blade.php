@@ -7,38 +7,29 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-
-                {{-- inserindo o título --}}
-                <div class="card-header">Adicionar tarefa</div>
+                
+                {{-- caso o id da tarefa esteja definido, trata-se de uma edição --}}
+                @if(isset($task->id))
+                    <div class="card-header">Editar tarefa</div>
+                {{-- senão, trata-se de um novo cadastro --}}
+                @else
+                    <div class="card-header">Adicionar tarefa</div>
+                @endif                
 
                 <div class="card-body">
 
-                    {{-- inserindo o form de criação --}}
-                    <form method="post" action="{{ route('task.store') }}">
+                    {{-- renderizando a mensagem se tiver sido injetada --}}
+                    {{ $msg ?? '' }}
 
-                        {{-- inserindo o token csrf --}}
-                        @csrf
-
-                        {{-- inserindo os inputs do formulário --}}
-                        {{-- os campos value estão utilizando a função old() para preservar os dados inseridos no caso de falha de validação --}}
-                        {{-- em caso de falha de validação, as mensagens do erro serão exibidas abaixo do respectivo input --}}
-                        <div class="mb-3">
-                            <label class="form-label">Tarefa</label>
-                            {{-- inserindo o input --}}
-                            <input type="text" class="form-control" name="task" value="{{ old('task') }}">
-                            {{-- inserindo a mensagem de erro referente ao input --}}
-                            {{$errors->has('task') ? $errors->first('task') : ''}}
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Data limite conclusão</label>
-                            {{-- inserindo o input --}}
-                            <input type="date" class="form-control" name="end_date_limit" value="{{ old('end_date_limit') }}">
-                            {{-- inserindo a mensagem de erro referente ao input --}}
-                            {{$errors->has('end_date_limit') ? $errors->first('end_date_limit') : ''}}
-                        </div>
-                        {{-- inserindo o button --}}
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                    </form>
+                    {{-- adicionando o componente de formulário de criação e edição --}}
+                    {{-- caso o id da tarefa esteja definido, trata-se de uma edição --}}
+                    @if(isset($task->id))
+                        @component('task._components._create_update_form', ['task' => $task])@endcomponent
+                    {{-- senão, trata-se de um novo cadastro --}}
+                    @else
+                        @component('task._components._create_update_form')@endcomponent
+                    @endif  
+                    
                 </div>
             </div>
         </div>
