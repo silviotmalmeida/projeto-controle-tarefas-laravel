@@ -186,4 +186,18 @@ class TaskController extends Controller
         // redireciona para a rota index
         return redirect()->route('task.index');
     }
+
+    // ação para exportação xlsx
+    public function xlsx_export(Request $request)
+    {
+        // obtendo o id do usuário logado
+        $user_id = auth()->user()->id;
+
+        // consulta no BD, ordenando por data limite 
+        $tasks = Task::where('user_id', $user_id)->orderBy('end_date_limit', 'desc')->paginate(6);
+
+        // renderiza a view index, passando os resultados da consulta e os parâmetros do request
+        // o envio dos parâmetros do request possibilita a persistência dos filtros utilizados na paginação
+        return view('task.index', ['tasks' => $tasks, 'request' => $request->all()]);
+    }
 }

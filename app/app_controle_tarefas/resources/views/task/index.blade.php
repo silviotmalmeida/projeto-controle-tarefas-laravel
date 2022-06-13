@@ -19,9 +19,9 @@
                         {{-- inserindo os links de criação e exportação --}}
                         <div class="col-6">
                             <div class="float-right">
-                                <a href="{{route('task.create')}}" class="btn btn-primary mr-3">Novo</a>
-                                {{-- <a href="{{route('tarefa.exportacao', ['extensao' => 'xlsx'])}}" class="mr-3">XLSX</a>
-                                <a href="{{route('tarefa.exportacao', ['extensao' => 'csv'])}}" class="mr-3">CSV</a>
+                                <a href="{{route('task.create')}}" class="btn btn-outline-primary mr-3">Novo</a>
+                                <a href="{{route('task.xlsx_export', ['extensao' => 'xlsx'])}}" class="btn btn-outline-success mr-3">XLSX</a>
+                                {{-- <a href="{{route('tarefa.exportacao', ['extensao' => 'csv'])}}" class="mr-3">CSV</a>
                                 <a href="{{route('tarefa.exportacao', ['extensao' => 'pdf'])}}" class="mr-3">PDF</a>
                                 <a href="{{route('tarefa.exportar')}}" target="_blank">PDF V2</a> --}}
                             </div>
@@ -60,7 +60,7 @@
                                     <td>{{ date('d/m/Y', strtotime($t['end_date_limit'])) }}</td>
 
                                     {{-- inserindo o link de edição --}}
-                                    <td><a class="btn btn-secondary" href="{{ route('task.edit', $t['id']) }}">Editar</a></td>
+                                    <td><a class="btn btn-outline-secondary" href="{{ route('task.edit', $t['id']) }}">Editar</a></td>
                                     
                                     {{-- inserindo o link de remoção --}}
                                     {{-- como utiliza o verbo http delete, deve-se incluir um form para isto, com id dinâmico, e ativado por um link com javascript --}}
@@ -72,7 +72,7 @@
                                             @csrf
                                         </form>
                                         {{-- inserindo o link com evento de javascript para submeter o formulário --}}
-                                        <a class="btn btn-danger" href="#" onclick="document.getElementById('form_{{$t['id']}}').submit()">Excluir</a>
+                                        <a class="btn btn-outline-danger" href="#" onclick="document.getElementById('form_{{$t['id']}}').submit()">Excluir</a>
                                     </td>
                                 </tr>
                             @endforeach
