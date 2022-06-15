@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Mail;
 // importando a classe de template de e-mail
 use App\Mail\NewTaskMail;
 
+// importando o laravel-excel
+use Maatwebsite\Excel\Facades\Excel;
+
+// importando a classe de exportação para excel
+use App\Exports\TaskExport;
+
 class TaskController extends Controller
 {
 
@@ -54,7 +60,7 @@ class TaskController extends Controller
         // obtendo o id do usuário logado
         $user_id = auth()->user()->id;
 
-        // consulta no BD, ordenando por data limite 
+        // consulta no BD, filtrando pelo usuário logado, ordenando por data limite 
         $tasks = Task::where('user_id', $user_id)->orderBy('end_date_limit', 'desc')->paginate(6);
 
         // renderiza a view index, passando os resultados da consulta e os parâmetros do request
@@ -187,17 +193,26 @@ class TaskController extends Controller
         return redirect()->route('task.index');
     }
 
-    // ação para exportação xlsx
-    public function xlsx_export(Request $request)
+    // ação para exportação
+    public function export(String $type)
     {
+
+        // se o argumento recebido não for um tipo válido
+        if ($type != 'xlsx' and $type != 'csv') {
+            // redireciona para a rota index
+            return redirect()->route('task.index');
+        }
+
         // obtendo o id do usuário logado
         $user_id = auth()->user()->id;
 
-        // consulta no BD, ordenando por data limite 
-        $tasks = Task::where('user_id', $user_id)->orderBy('end_date_limit', 'desc')->paginate(6);
+        // obtendo a data e hora atuais
+        $now = date("Y-m-d H:i:s");
 
-        // renderiza a view index, passando os resultados da consulta e os parâmetros do request
-        // o envio dos parâmetros do request possibilita a persistência dos filtros utilizados na paginação
-        return view('task.index', ['tasks' => $tasks, 'request' => $request->all()]);
+        // definindo o nome do arquivo de saída
+        $filename = "{$now}_tasks_user_{$user_id}.{$type}";
+
+        // exportando o arquivo
+        return Excel::download(new TaskExport, $filename);
     }
 }

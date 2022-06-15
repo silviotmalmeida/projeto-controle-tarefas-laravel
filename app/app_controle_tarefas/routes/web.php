@@ -31,9 +31,9 @@ Auth::routes(['verify' => true]);
 
 
 // Rotas de Task
-// adicionando a rota para exportação xlsx, acessível somente a usuários cadastrados e com email verificado
-Route::get('/task/xlsx_export', 'App\Http\Controllers\TaskController@xlsx_export')
-    ->name('task.xlsx_export')
+// adicionando a rota para exportação, com parâmetro type obrigatório, acessível somente a usuários cadastrados e com email verificado
+Route::get('/task/export/{type}', 'App\Http\Controllers\TaskController@export')
+    ->name('task.export')
     ->middleware('verified');
 // definindo as demais rotas de task, acessíveis somente a usuários cadastrados e com email verificado
 Route::resource('task', 'App\Http\Controllers\TaskController')

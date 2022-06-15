@@ -32,6 +32,6 @@ class Task extends Model
     // o terceiro argumento deve ser a pk na tabela forte
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\Models\User', 'user_id', 'id');
     }
 }
