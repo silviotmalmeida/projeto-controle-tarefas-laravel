@@ -14,6 +14,8 @@ O projeto encontra-se dockerizado para facilitar a implantação. As orientaçõ
 
 - Para aplicar as migrations utiliza-se o comando "sudo ./runMigrate.sh";
 
+- Para criar uma massa de dados de teste utiliza-se o comando "sudo ./runSeed.sh";
+
 - Para iniciar o servidor utiliza-se o comando "sudo ./runServer.sh";
 
 - O sistema estará disponível na URL "0.0.0.0:8080";
@@ -21,6 +23,10 @@ O projeto encontra-se dockerizado para facilitar a implantação. As orientaçõ
 - Para iniciar o mailhog(servidor smtp), em outro terminal, utiliza-se o comando "sudo ./runMailhog.sh";
 
 - O Mailhog estará disponível na URL "0.0.0.0:8025";
+
+- O dados para acesso da Área Restrita são:
+    - Email: usuario1@email.com (existem as contas dos usuarios de 1 a 9)
+    - Senha: 12345678
 
 - Para encerrar a execução utiliza-se o comando "sudo ./stopContainers.sh";
 
