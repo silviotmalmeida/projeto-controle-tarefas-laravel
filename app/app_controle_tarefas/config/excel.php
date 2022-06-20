@@ -45,7 +45,8 @@ return [
             'delimiter'              => ',',
             'enclosure'              => '"',
             'line_ending'            => PHP_EOL,
-            'use_bom'                => false,
+            // alterado para true para reconhecer caracteres especiais
+            'use_bom'                => true,
             'include_separator_line' => false,
             'excel_compatibility'    => false,
             'output_encoding'        => '',
@@ -186,7 +187,8 @@ return [
         | Available options: Excel::MPDF | Excel::TCPDF | Excel::DOMPDF
         |
         */
-        'pdf'      => Excel::DOMPDF,
+        // foi alterado para MPDF
+        'pdf'      => Excel::MPDF,
     ],
 
     /*

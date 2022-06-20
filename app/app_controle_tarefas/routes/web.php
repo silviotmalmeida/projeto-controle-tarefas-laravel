@@ -35,6 +35,12 @@ Auth::routes(['verify' => true]);
 Route::get('/task/export/{type}', 'App\Http\Controllers\TaskController@export')
     ->name('task.export')
     ->middleware('verified');
+
+// adicionando a rota para exportação de pdf com o dompdf, acessível somente a usuários cadastrados e com email verificado
+Route::get('/task/export_pdf', 'App\Http\Controllers\TaskController@export_pdf')
+    ->name('task.export_pdf')
+    ->middleware('verified');
+
 // definindo as demais rotas de task, acessíveis somente a usuários cadastrados e com email verificado
 Route::resource('task', 'App\Http\Controllers\TaskController')
     ->middleware('verified');

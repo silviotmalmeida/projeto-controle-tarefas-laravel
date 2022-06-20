@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\NewTaskMail;
 
 // importando o laravel-excel
-use Maatwebsite\Excel\Facades\Excel;
+use Excel;
+
+// importando o laravel-dompdf
+use PDF;
 
 // importando a classe de exportação para excel
 use App\Exports\TaskExport;
@@ -198,7 +201,7 @@ class TaskController extends Controller
     {
 
         // se o argumento recebido não for um tipo válido
-        if ($type != 'xlsx' and $type != 'csv') {
+        if (!in_array($type, ['xlsx', 'csv', 'pdf'])) {
             // redireciona para a rota index
             return redirect()->route('task.index');
         }
@@ -214,5 +217,26 @@ class TaskController extends Controller
 
         // exportando o arquivo
         return Excel::download(new TaskExport, $filename);
+    }
+
+    // ação para exportação de podf com dompdf
+    public function export_pdf()
+    {
+
+        // obtendo o id do usuário logado
+        $user_id = auth()->user()->id;
+
+        // obtendo a data e hora atuais
+        $now = date("Y-m-d H:i:s");
+
+        // definindo o nome do arquivo de saída
+        $filename = "{$now}_tasks_user_{$user_id}.pdf";
+
+        // consulta no BD, filtrando pelo usuário logado, ordenando por data limite 
+        $tasks = auth()->user()->task()->orderBy('end_date_limit', 'desc')->get();
+
+        // exportando o arquivo
+        $pdf = PDF::loadView('task.pdf', ['tasks' => $tasks]);
+        return $pdf->download($filename);
     }
 }

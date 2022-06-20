@@ -22,8 +22,8 @@
                                 <a href="{{route('task.create')}}" class="btn btn-outline-primary mr-3">Novo</a>
                                 <a href="{{route('task.export', ['type' => 'xlsx'])}}" class="btn btn-outline-success mr-3">XLSX</a>
                                 <a href="{{route('task.export', ['type' => 'csv'])}}" class="btn btn-outline-secondary mr-3">CSV</a>
-                                {{-- <a href="{{route('tarefa.exportacao', ['extensao' => 'pdf'])}}" class="mr-3">PDF</a>
-                                <a href="{{route('tarefa.exportar')}}" target="_blank">PDF V2</a> --}}
+                                <a href="{{route('task.export', ['type' => 'pdf'])}}" class="btn btn-outline-danger mr-3">PDF</a>
+                                <a href="{{route('task.export_pdf')}}" class="btn btn-outline-danger mr-3">PDF V2</a>
                             </div>
                         </div>
                     </div>

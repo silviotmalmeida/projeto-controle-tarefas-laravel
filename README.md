@@ -41,7 +41,11 @@ Principais comandos do laravel:
 
 - Para adicionar o laravel-excel utiliza-se o comando: composer require maatwebsite/excel="versão"
 
-- Para atualizar o frontend da seção de autentucação web criada pelo ui utiliza-se o comando: npm install && npm run dev
+- Para adicionar o mpdf utiliza-se o comando: composer require mpdf/mpdf="versão"
+
+- Para adicionar o dompdf utiliza-se o comando: composer require barryvdh/laravel-dompdf="versão"
+
+- Para atualizar o frontend da seção de autenticação web criada pelo ui utiliza-se o comando: npm install && npm run dev
 
 - Para utilizar o laravel ui com autenticação web habilitada utiliza-se o comando: php artisan ui "bootstrap ou vue ou react" --auth
 
@@ -63,7 +67,7 @@ Principais comandos do laravel:
 
 - Para criar uma cópia dos estilos gerais de email do laravel para o seu projeto local, visando customização, utiliza-se o comando, na pasta raiz do projeto: php artisan vendor:publish, em seguida selecionar a opção 14
 
-- Para criar uma classe de exportação para o larave-excel utiliza-se o comando, na pasta raiz do projeto: php artisan make:export nome-do-model-Export --model=nome-do-model
+- Para criar uma classe de exportação para o laravel-excel utiliza-se o comando, na pasta raiz do projeto: php artisan make:export nome-do-model-Export --model=nome-do-model
 
 - Para aplicar as migrations utiliza-se o comando, na pasta raiz do projeto: php artisan migrate
 

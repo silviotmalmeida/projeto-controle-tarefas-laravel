@@ -178,6 +178,8 @@ return [
         // adicionando o laravel-excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+        // adicionando o laravel-dompdf
+        Barryvdh\DomPDF\ServiceProvider::class
     ],
 
     /*
@@ -233,6 +235,8 @@ return [
         // adicionando o alias do laravel-excel
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
+        // adicionando o alias do laravel-dompdf
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];
