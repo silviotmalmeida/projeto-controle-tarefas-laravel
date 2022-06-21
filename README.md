@@ -18,7 +18,7 @@ O projeto encontra-se dockerizado para facilitar a implantação. As orientaçõ
 
 - Para iniciar o servidor utiliza-se o comando "sudo ./runServer.sh";
 
-- O sistema estará disponível na URL "0.0.0.0:8080";
+- O sistema estará disponível na URL "0.0.0.0:8080/task";
 
 - Para iniciar o mailhog(servidor smtp), em outro terminal, utiliza-se o comando "sudo ./runMailhog.sh";
 

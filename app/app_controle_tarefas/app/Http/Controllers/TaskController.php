@@ -235,8 +235,18 @@ class TaskController extends Controller
         // consulta no BD, filtrando pelo usuário logado, ordenando por data limite 
         $tasks = auth()->user()->task()->orderBy('end_date_limit', 'desc')->get();
 
-        // exportando o arquivo
+        // carregando a view e os dados
         $pdf = PDF::loadView('task.pdf', ['tasks' => $tasks]);
-        return $pdf->download($filename);
+
+        // definindo a página
+        // o primeiro argumento é o tamanho
+        // o segundo argumento é a orientação (portrait ou landscape)
+        $pdf->setPaper('a4', 'portrait');
+
+        // // gera e executa do download do arquivo
+        // return $pdf->download($filename);
+
+        // gera e abre o arquivo pelo browser
+        return $pdf->stream($filename);
     }
 }
